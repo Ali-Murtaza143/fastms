@@ -158,19 +158,18 @@ int example_batchprocessing(int argc, char **argv)
 			FilesUtil::to_dir_basename(input_names[i], dir, basename);
 			if (row1d >= 0) { std::stringstream s; s << "_row" << row1d; basename += s.str(); }
 
-			std::string out_dir = save_dir + '/' + dir;
-			if (!FilesUtil::mkdir(out_dir)) { std::cerr << "ERROR: Could not create output directory " << out_dir.c_str() << std::endl; continue; }
-			std::string out_file_input = out_dir + '/' + basename + "__input.png";
-			std::string out_file_result = out_dir + '/' + basename + "__result" + par_to_string(par) + ".png";
-			if (!cv::imwrite(out_file_input, input_images[i])) { std::cerr << "ERROR: Could not save input image " << out_file_input.c_str() << std::endl; continue; }
-			if (!cv::imwrite(out_file_result, result_images[i])) { std::cerr << "ERROR: Could not save result image " << out_file_result.c_str() << std::endl; continue; }
-			std::cout << "SAVED RESULT: " << out_file_result.c_str() << "  (SAVED INPUT: " << out_file_input.c_str() << ")" << std::endl;
-        }
+		configuration_version
+\        }
     }
     if (show_result)
     {
         for (int i = 0; i < (int)input_images.size(); i++)
+        {for (int i = 0; i < (int)input_images.size(); i++)
         {
+        	show_image("Input", input_images[i], 100, 100);
+        	show_image("Output", result_images[i], 100 + input_images[i].cols + 40, 100);
+        	cv::waitKey(0);
+        }
         	show_image("Input", input_images[i], 100, 100);
         	show_image("Output", result_images[i], 100 + input_images[i].cols + 40, 100);
         	cv::waitKey(0);
